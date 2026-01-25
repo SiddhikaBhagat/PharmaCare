@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routers/authRoutes');
+const inventoryRoutes = require('./routers/inventoryRoutes');
 const { errorHandler } = require('./middleware/errorMiddleware');
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'PharmaCare API is running' });
