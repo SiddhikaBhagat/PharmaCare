@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const authRoutes = require('./routers/authRoutes');
 const { errorHandler } = require('./middleware/errorMiddleware');
 dotenv.config();
 
@@ -35,11 +36,15 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-app.options("*", cors());
+// ✅ NEW (Fixes Error)
+app.options(/(.*)/, cors());
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Routes
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'PharmaCare API is running' });
