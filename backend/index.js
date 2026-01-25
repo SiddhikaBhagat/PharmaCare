@@ -8,6 +8,7 @@ const inventoryRoutes = require('./routers/inventoryRoutes');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const prescriptionRoutes = require("./routers/prescriptionRoutes");
 const orderRoutes = require("./routers/orderRoutes");
+const notificationRoutes = require("./routers/notificationRoutes");
 dotenv.config();
 
 
@@ -51,6 +52,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use("/api/prescriptions", prescriptionRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'PharmaCare API is running' });
